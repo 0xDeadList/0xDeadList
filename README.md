@@ -44,7 +44,7 @@ function isAddressLockedOrDead(address addr) public view returns (bool);
 const ethers = require('ethers');
 
 const DEADLIST_ABI = require('./scripts/abi/dead_list_abi.json');
-const DEADLIST_CONTRACT_ADDRESS = '0x458253AFEf490A949e177DF6E50d7E14cD86C6d9';
+const DEADLIST_CONTRACT_ADDRESS = '0x43d9822b3e9463904130e6d4fa808654a3e7e0eb';
 const provider = new ethers.providers.InfuraProvider('matic', INFURA_KEY); // USE YOUR OWN KEY
 const deadlistContract = new ethers.Contract(DEADLIST_CONTRACT_ADDRESS, DEADLIST_ABI, provider);
 
