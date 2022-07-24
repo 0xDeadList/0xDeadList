@@ -25,6 +25,8 @@ jobs:
         run: npm ci
 
       - name: Update List
+        env:
+          PROVIDER_KEY: ${{ secrets.PROVIDER_KEY }}
         run: node update.js
 
       - name: Commit changes
