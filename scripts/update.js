@@ -24,7 +24,7 @@ async function updateLockLog(provider, startBlock, endBlock) {
     console.log("append " + updates.length + " locklog");
     if (updates.length == 0) return;
     let patchLines = updates.map(item => item.join(' ')).join('\n');
-    fs.appendFileSync(filename, patchLines + '\n');
+    fs.appendFileSync(filename, '\n' + patchLines);
 }
 
 async function updateDeadList(provider, startBlock, endBlock) {
@@ -44,7 +44,7 @@ async function updateDeadList(provider, startBlock, endBlock) {
     console.log("append " + updates.length + " dead address");
     if (updates.length == 0) return;
     let patchLines = updates.map(item => item.join(' ')).join('\n');
-    fs.appendFileSync(filename, patchLines + '\n');
+    fs.appendFileSync(filename, '\n' + patchLines);
 }
 
 async function update() {
