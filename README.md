@@ -43,7 +43,7 @@ const ethers = require('ethers');
 
 const DEADLIST_ABI = require('./scripts/abi/dead_list_abi.json');
 const DEADLIST_CONTRACT_ADDRESS = '0x458253AFEf490A949e177DF6E50d7E14cD86C6d9';
-const provider = new ethers.providers.InfuraProvider('polygon', INFURA_KEY); // USE YOUR OWN KEY
+const provider = new ethers.providers.InfuraProvider('matic', INFURA_KEY); // USE YOUR OWN KEY
 const deadlistContract = new ethers.Contract(DEADLIST_CONTRACT_ADDRESS, DEADLIST_ABI, provider);
 
 const targt_address = '0xE57bFE9F44b819898F47BF37E5AF72a0783e1141';

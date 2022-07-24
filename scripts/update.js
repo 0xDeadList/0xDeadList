@@ -3,8 +3,8 @@ const providers = require('ethers').providers;
 const ethers = require('ethers');
 const fs = require('fs');
 
-const infuraProvider = new providers.InfuraProvider('ropsten', process.env.PROVIDER_KEY);
-const blockNumberFile = '../latestblock.txt';
+const myProvider = new providers.AlchemyProvider('ropsten', process.env.PROVIDER_KEY);
+const metaFile = '../meta.txt';
 
 async function updateLockLog(provider, startBlock, endBlock) {
     const filename = '../locklog.txt';
@@ -22,9 +22,10 @@ async function updateLockLog(provider, startBlock, endBlock) {
             [event.args.locked, event.args.lock_until]));
     }
     console.log("append " + updates.length + " locklog");
-    if (updates.length == 0) return;
+    if (updates.length == 0) return 0;
     let patchLines = updates.map(item => item.join(' ')).join('\n');
     fs.appendFileSync(filename, '\n' + patchLines);
+    return updates.length;
 }
 
 async function updateDeadList(provider, startBlock, endBlock) {
@@ -42,25 +43,30 @@ async function updateDeadList(provider, startBlock, endBlock) {
             [event.args.to, ethers.utils.hexZeroPad(event.args.tokenId.toHexString(), 32)]));
     }
     console.log("append " + updates.length + " dead address");
-    if (updates.length == 0) return;
+    if (updates.length == 0) return 0;
     let patchLines = updates.map(item => item.join(' ')).join('\n');
     fs.appendFileSync(filename, '\n' + patchLines);
+    return updates.length;
 }
 
 async function update() {
-    const startBlock = parseInt(fs.readFileSync(blockNumberFile).toString()) + 1;
-    const endBlock = await infuraProvider.getBlockNumber() - 16;
-    console.log("update block range [" + startBlock + "," + endBlock + "]");
+    const [lastDumpBlock, numDead, numLock] = 
+        fs.readFileSync(metaFile).toString().split('\n').map(num => parseInt(num, 10));
+    console.log(lastDumpBlock, numDead, numLock);
+
+    const startBlock = lastDumpBlock + 1;
+    const endBlock = await myProvider.getBlockNumber() - 16;
+    console.log("update block range [" + startBlock + ", " + endBlock + "]");
     if (startBlock > endBlock) {
         console.log("pass");
         return;
     }
 
-    await updateLockLog(infuraProvider, startBlock, endBlock);
-    await updateDeadList(infuraProvider, startBlock, endBlock);
+    const newDead = await updateLockLog(myProvider, startBlock, endBlock);
+    const newLock = await updateDeadList(myProvider, startBlock, endBlock);
 
     // write block height
-    fs.writeFileSync(blockNumberFile, endBlock.toString());
+    fs.writeFileSync(metaFile, [endBlock, numDead + newDead, numLock + newLock].join('\n'));
 }
 
 update();
