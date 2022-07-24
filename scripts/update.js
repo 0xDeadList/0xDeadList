@@ -4,7 +4,7 @@ const ethers = require('ethers');
 const fs = require('fs');
 
 const infuraProvider = new providers.InfuraProvider('ropsten', process.env.PROVIDER_KEY);
-const blockNumberFile = '../latestblock';
+const blockNumberFile = '../latestblock.txt';
 
 async function updateLockLog(provider, startBlock, endBlock) {
     const filename = '../locklog.txt';
