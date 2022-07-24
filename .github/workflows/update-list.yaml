@@ -2,7 +2,7 @@ name: Update List
 
 on: 
   schedule:
-    - cron: '30 * * * *'
+    - cron: '35 * * * *'
 
 defaults:
   run:
