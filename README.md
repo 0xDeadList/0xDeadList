@@ -20,11 +20,11 @@ Mint NFT in DeadList is quite easy. Just go to https://0xdeadlist.io, input the 
 
 ## Use DeadList in Dapp
 
-Currently 0xDeadList contract is depolied on Polygon:
+Currently 0xDeadList contract is depolyed on Polygon:
 
-- DeadList Contract Address:
-- Burrier NFT Contract Address:
-- TombStone SBT Contract Address: 
+- DeadList Contract Address: [0x43d9822b3e9463904130e6d4fa808654a3e7e0eb](https://polygonscan.com/address/0x43d9822b3e9463904130e6d4fa808654a3e7e0eb)
+- Burrier NFT Collection: [OpenSea](https://opensea.io/collection/addressburier-v2)
+- TombStone SBT Collection: [OpenSea](https://opensea.io/collection/tombstone-v4)
 
 **On-Chain API example:**
 
@@ -37,7 +37,6 @@ function isAddressLocked(address addr) public view returns (bool);
 
 function isAddressLockedOrDead(address addr) public view returns (bool);
 ```
-
 
 **Off-Chain API example:**
 
