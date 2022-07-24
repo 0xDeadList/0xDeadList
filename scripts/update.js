@@ -15,8 +15,8 @@ async function updateLockLog(provider, startBlock, endBlock) {
     const filter = contract.filters.Lock();
     let updates = [];
     for (let i = startBlock; i <= endBlock; i += 1024) {
-        const _startBlock = i + 1;
-        const _endBlock = i + 1024;   
+        const _startBlock = i;
+        const _endBlock = Math.min(i + 1024 - 1, endBlock);   
         const events = await contract.queryFilter(filter, _startBlock, _endBlock);
         updates = updates.concat(events.map(event =>
             [event.args.locked, event.args.lock_until]));
@@ -35,8 +35,8 @@ async function updateDeadList(provider, startBlock, endBlock) {
     const filter = contract.filters.Transfer();
     let updates = [];
     for (let i = startBlock; i <= endBlock; i += 1024) {
-        const _startBlock = i + 1;
-        const _endBlock = i + 1024;   
+        const _startBlock = i;
+        const _endBlock = Math.min(i + 1024 - 1, endBlock);   
         const events = await contract.queryFilter(filter, _startBlock, _endBlock);
         updates = updates.concat(events.map(event =>
             [event.args.to, ethers.utils.hexZeroPad(event.args.tokenId.toHexString(), 32)]));
@@ -48,15 +48,19 @@ async function updateDeadList(provider, startBlock, endBlock) {
 }
 
 async function update() {
-    const blockHeight = await infuraProvider.getBlockNumber() - 32;
-    const lastUpdateBlock = parseInt(fs.readFileSync(blockNumberFile).toString());
-    console.log("update block range (" + lastUpdateBlock + "," + blockHeight + "]");
+    const startBlock = parseInt(fs.readFileSync(blockNumberFile).toString()) + 1;
+    const endBlock = await infuraProvider.getBlockNumber() - 16;
+    console.log("update block range [" + startBlock + "," + endBlock + "]");
+    if (startBlock > endBlock) {
+        console.log("pass");
+        return;
+    }
 
-    await updateLockLog(infuraProvider, lastUpdateBlock, blockHeight);
-    await updateDeadList(infuraProvider, lastUpdateBlock, blockHeight);
+    await updateLockLog(infuraProvider, startBlock, endBlock);
+    await updateDeadList(infuraProvider, startBlock, endBlock);
 
     // write block height
-    fs.writeFileSync(blockNumberFile, blockHeight.toString());
+    fs.writeFileSync(blockNumberFile, endBlock.toString());
 }
 
 update();
