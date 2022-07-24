@@ -26,6 +26,8 @@ Currently 0xDeadList contract is depolied on Polygon:
 - Burrier NFT Contract Address:
 - TombStone SBT Contract Address: 
 
+**On-Chain API example:**
+
 DeadList contract has three pure functions that show the status of wallet address:
 
 ``` solidity
@@ -35,6 +37,7 @@ function isAddressLocked(address addr) public view returns (bool);
 
 function isAddressLockedOrDead(address addr) public view returns (bool);
 ```
+
 
 **Off-Chain API example:**
 
@@ -56,12 +59,6 @@ console.log("isAddressLocked:", isAddressLocked);
 
 let isAddressLockedOrDead = await deadlistContract.isAddressLockedOrDead(targt_address);
 console.log("isAddressLockedOrDead:", isAddressLockedOrDead);
-```
-
-**On-Chain API example:**
-
-``` solidity
-
 ```
 
 ## Resources

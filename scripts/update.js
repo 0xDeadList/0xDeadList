@@ -3,7 +3,7 @@ const providers = require('ethers').providers;
 const ethers = require('ethers');
 const fs = require('fs');
 
-const myProvider = new providers.AlchemyProvider('ropsten', process.env.PROVIDER_KEY);
+const myProvider = new providers.AlchemyProvider(process.env.NETWORK, process.env.PROVIDER_KEY);
 const metaFile = '../meta.txt';
 
 async function updateLockLog(provider, startBlock, endBlock) {
