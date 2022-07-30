@@ -24,9 +24,9 @@ Dapps should ban address in 0xDeadList to avoid malicious exploitation.
 
 Currently 0xDeadList contract is depolyed on Polygon:
 
-- DeadList Contract Address: [0x43d9822b3e9463904130e6d4fa808654a3e7e0eb](https://polygonscan.com/address/0x43d9822b3e9463904130e6d4fa808654a3e7e0eb)
-- Burrier NFT Collection: [OpenSea](https://opensea.io/collection/addressburier-v2)
-- TombStone SBT Collection: [OpenSea](https://opensea.io/collection/tombstone-v4)
+- DeadList Contract Address: [0x59451a98d772f2a53ca2241a884b1703f8c55218](https://polygonscan.com/address/0x59451a98d772f2a53ca2241a884b1703f8c55218)
+- Burrier NFT Collection: [OpenSea](https://opensea.io/collection/addressburier-v3)
+- TombStone SBT Collection: [OpenSea](https://opensea.io/collection/tombstone-zktgb9g35d)
 
 **On-Chain API example:**
 
@@ -42,7 +42,7 @@ function isAddressLockedOrDead(address addr) public view returns (bool);
 const ethers = require('ethers');
 
 const DEADLIST_ABI = require('./scripts/abi/dead_list_abi.json');
-const DEADLIST_CONTRACT_ADDRESS = '0x43d9822b3e9463904130e6d4fa808654a3e7e0eb';
+const DEADLIST_CONTRACT_ADDRESS = '0x59451a98d772f2a53ca2241a884b1703f8c55218';
 const provider = new ethers.providers.InfuraProvider('matic', INFURA_KEY); // USE YOUR OWN KEY
 const deadlistContract = new ethers.Contract(DEADLIST_CONTRACT_ADDRESS, DEADLIST_ABI, provider);
 
@@ -56,7 +56,7 @@ console.log("isAddressLockedOrDead:", isAddressLockedOrDead);
 
 - Website: https://0xdeadlist.io
 - Twitter: https://twitter.com/0xdeadlist
-- Discord: https://discord.gg/uHYgebcq
+- Discord: https://discord.gg/vTbSCKau
 - Github: https://github.com/0xDeadList
 
 ## Projects That Use 0xDeadList
