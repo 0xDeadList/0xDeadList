@@ -2,9 +2,9 @@
 
 ## Introduction
 
-0xDeadList collects the "dead" address with leaked private key. Users are able to lock/bury wallet and get a NFT for reporting the leaked private key. Dapps are able to block those public accessible wallets with on/off-chain APIs.
+0xDeadList collects the "dead" address with leaked private key. Users are able to lock/bury wallet and get a [Burier NFT](https://opensea.io/collection/addressburier-v2) for reporting the leaked private key. Dapps are able to block those public accessible wallets with on/off-chain APIs.
 
-The dead addresses (with private keys) are periodically dumped into [deadlist.txt](./deadlist.txt).
+The dead addresses are attached with [Tombstone SBT](https://opensea.io/collection/tombstone-v4). The full deadlist is periodically dumped into [deadlist.txt](./deadlist.txt).
 
 ## How does this work?
 
@@ -20,6 +20,8 @@ Mint NFT in DeadList is quite easy. Just go to https://0xdeadlist.io, input the 
 
 ## Use DeadList in Dapp
 
+Dapps should ban address in 0xDeadList to avoid malicious exploitation.
+
 Currently 0xDeadList contract is depolyed on Polygon:
 
 - DeadList Contract Address: [0x43d9822b3e9463904130e6d4fa808654a3e7e0eb](https://polygonscan.com/address/0x43d9822b3e9463904130e6d4fa808654a3e7e0eb)
@@ -28,13 +30,9 @@ Currently 0xDeadList contract is depolyed on Polygon:
 
 **On-Chain API example:**
 
-DeadList contract has three pure functions that show the status of wallet address:
+DeadList contract has pure function that check the status of wallet address:
 
 ``` solidity
-function isAddressDead(address addr) public view returns (bool);
-
-function isAddressLocked(address addr) public view returns (bool);
-
 function isAddressLockedOrDead(address addr) public view returns (bool);
 ```
 
@@ -50,12 +48,6 @@ const deadlistContract = new ethers.Contract(DEADLIST_CONTRACT_ADDRESS, DEADLIST
 
 const targt_address = '0xE57bFE9F44b819898F47BF37E5AF72a0783e1141';
 
-let isAddressDead = await deadlistContract.isAddressDead(targt_address);
-console.log("isAddressDead:", isAddressDead);
-
-let isAddressLocked = await deadlistContract.isAddressLocked(targt_address);
-console.log("isAddressLocked:", isAddressLocked);
-
 let isAddressLockedOrDead = await deadlistContract.isAddressLockedOrDead(targt_address);
 console.log("isAddressLockedOrDead:", isAddressLockedOrDead);
 ```
@@ -66,3 +58,8 @@ console.log("isAddressLockedOrDead:", isAddressLockedOrDead);
 - Twitter: https://twitter.com/0xdeadlist
 - Discord: https://discord.gg/uHYgebcq
 - Github: https://github.com/0xDeadList
+
+## Projects That Use 0xDeadList
+
+- [MetaMail](https://metamail.ink)
+- [EthSign](https://www.ethsign.xyz/)
