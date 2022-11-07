@@ -21,9 +21,9 @@ async function updateLockLog(provider, startBlock, endBlock) {
         updates = updates.concat(events.map(event =>
             [event.args.locked, event.args.lock_until]));
     }
-    console.log("append " + updates.length + " locklog");
-    if (updates.length == 0) return 0;
-    let patchLines = updates.map(item => item.join(' ')).join('\n');
+    console.log(`append ${updates.length} locklog`);
+    if (updates.length === 0) return 0;
+    const patchLines = updates.map(item => item.join(' ')).join('\n');
     fs.appendFileSync(filename, '\n' + patchLines);
     return updates.length;
 }
@@ -42,9 +42,9 @@ async function updateDeadList(provider, startBlock, endBlock) {
         updates = updates.concat(events.map(event =>
             [event.args.to, ethers.utils.hexZeroPad(event.args.tokenId.toHexString(), 32)]));
     }
-    console.log("append " + updates.length + " dead address");
-    if (updates.length == 0) return 0;
-    let patchLines = updates.map(item => item.join(' ')).join('\n');
+    console.log(`append ${updates.length} dead address`);
+    if (updates.length === 0) return 0;
+    const patchLines = updates.map(item => item.join(' ')).join('\n');
     fs.appendFileSync(filename, '\n' + patchLines);
     return updates.length;
 }
@@ -56,7 +56,7 @@ async function update() {
 
     const startBlock = lastDumpBlock + 1;
     const endBlock = await myProvider.getBlockNumber() - 16;
-    console.log("update block range [" + startBlock + ", " + endBlock + "]");
+    console.log(`update block range [${startBlock}, ${endBlock}]`);
     if (startBlock > endBlock) {
         console.log("pass");
         return;
