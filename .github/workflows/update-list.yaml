@@ -3,7 +3,7 @@ name: Update List
 on: 
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '3 3 * * *'
 
 defaults:
   run:
