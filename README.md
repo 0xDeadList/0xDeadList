@@ -8,11 +8,11 @@ The dead addresses are attached with [Tombstone SBT](https://opensea.io/collecti
 
 ## How does this work?
 
-There are two kinds of "dead" address: private key that nobody knows and everyone knows. 0xDeadList program tries to collet a full list of the later by saving private keys on chain so that everyone are able to access the dead list.
+There are two kinds of "dead" address: private key that nobody knows and everyone knows. 0xDeadList program tries to collect a full list of the latter by saving private keys on chain so that everyone is able to access the dead list.
 
 Users get NFT (called Burrier) when they successfully post dead address. At the same time, the contract attach SBT (called TombStone) to the dead address.
 
-The program will reward users who holds Burrier NFT according the value of dead address (e.g., consider the created time and consumed gas fee) in the future.
+The program will reward users who hold Burrier NFT according to the value of dead address (e.g., consider the created time and consumed gas fee) in the future.
 
 ## Mint NFT in DeadList
 
