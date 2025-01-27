@@ -1,5 +1,17 @@
 # 0xDeadList
 
+**TLDR: Bury Your Leaked Ethereum Account**
+A minimalistic interface is available at: https://etherscan.io/address/0x6d8b24e34ea3f293595c0fd10ebc83fb4cda6f94#writeContract
+
+This contract leverages the `ecrecover` precompile to perform elliptic curve scalar multiplication (ECMUL), exploiting a method documented here: https://ethresear.ch/t/you-can-kinda-abuse-ecrecover-to-do-ecmul-in-secp256k1-today/2384
+
+Sample transaction (with only `49k` gas): https://etherscan.io/tx/0x7f5521403fbd79e9d1926e10f81b1f9aa148b6d91e5868969bb49d939e996394
+
+**!!! Critical Warning !!!**
+Your private key will be **permanently exposed on-chain** once the transaction is included. Use this contract **ONLY** if:
+- The private key is **confirmed leaked**.
+- You **irrevocably abandon** the key.
+
 ## Introduction
 
 0xDeadList collects the "dead" address with leaked private key. Users are able to lock/bury wallet and get a [Burier NFT](https://opensea.io/collection/addressburier-v2) for reporting the leaked private key. Dapps are able to block those public accessible wallets with on/off-chain APIs.
