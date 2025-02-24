@@ -34,7 +34,7 @@ Mint NFT in DeadList is quite easy. Just go to https://0xdeadlist.io, input the 
 
 Dapps should ban address in 0xDeadList to avoid malicious exploitation.
 
-Currently 0xDeadList contract is depolyed on Polygon:
+Currently 0xDeadList contract is deployed on Polygon:
 
 - DeadList Contract Address: [0x59451a98d772f2a53ca2241a884b1703f8c55218](https://polygonscan.com/address/0x59451a98d772f2a53ca2241a884b1703f8c55218)
 - Burrier NFT Collection: [OpenSea](https://opensea.io/collection/addressburier-v3)
