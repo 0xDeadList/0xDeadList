@@ -151,7 +151,7 @@ library EllipticCurve {
   /// @param _x coordinate x of P1
   /// @param _y coordinate y of P1
   /// @param _z coordinate z of P1
-  /// @param _aa the a scalar in the curve equation
+  /// @param _aa the scalar a in the curve equation
   /// @param _pp the modulus
   /// @return (qx, qy, qz) 2P in Jacobian
   function jacDouble(
